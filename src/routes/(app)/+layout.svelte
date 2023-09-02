@@ -63,6 +63,7 @@
 	function drawerOpen(): void {
 		drawerStore.open({});
 	}
+
 	function drawerClose(): void {
 		drawerStore.close();
 	}
@@ -149,13 +150,22 @@
 				<div
 					class="w-full h-full -mb-6 hidden md:flex flex-col items-center justify-end">
 					<img
+						on:click={() => {
+							window.location = '/';
+						}}
 						src="/images/logo.png"
 						alt="logo"
-						class="hidden md:block w-36 h-32 object-cover" />
+						class="hidden md:block w-36 h-36 object-cover cursor-pointer" />
 				</div>
 			</svelte:fragment>
 			<div class="flex md:hidden items-center gap-2">
-				<img src="/images/logo.png" alt="logo" class="h-12 -my-4" />
+				<img
+					on:click={() => {
+						window.location = '/';
+					}}
+					src="/images/logo.png"
+					alt="logo"
+					class="h-12 -my-4 cursor-pointer" />
 				{PUBLIC_TITLE}
 			</div>
 			<svelte:fragment slot="trail">

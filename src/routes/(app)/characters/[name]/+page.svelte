@@ -2,9 +2,9 @@
 	import { _ } from 'svelte-i18n';
 
 	import AnimatedOutfit from '$lib/components/ui/AnimatedOutfit.svelte';
+	import CharacterInventory from '$lib/components/ui/CharacterInventory.svelte';
 	import CharactersTable from '$lib/components/ui/CharactersTable.svelte';
 	import GuildMembership from '$lib/components/ui/GuildMembership.svelte';
-	import CharacterInventory from '$lib/components/ui/CharacterInventory.svelte';
 	import { pronounsEnabled } from '$lib/config';
 	import { getPronoun, sexString, vocationString } from '$lib/players';
 	import { formatDate, formatGoldCoins } from '$lib/utils';
@@ -24,9 +24,9 @@
 </script>
 
 {#if character}
-	<div class="flex flex-col gap-2">
+	<div class="flex flex-col gap-2 mt-4">
 		<div class="data-table">
-			<div class="flex flex-row justify-center gap-4 items-center px-8">
+			<div class="flex flex-row gap-4 items-center">
 				<span
 					class="text-primary-700-200-token font-heading-token text-xl font-semibold">
 					{character.name}
@@ -40,7 +40,7 @@
 					<em class="font-light text-xs">({getPronoun(character)})</em>
 				{/if}
 			</div>
-			<div class="data-row">
+			<div class="data-row flex-row justify-between">
 				<dt>{$_('sex')}</dt>
 				<dd>{sexString(character.sex)}</dd>
 			</div>
@@ -61,7 +61,9 @@
 			{#if character.guild != null}
 				<div class="data-row">
 					<dt>{$_('guilds.membership')}</dt>
-					<dd><GuildMembership guild={character.guild} /></dd>
+					<dd>
+						<GuildMembership guild={character.guild} />
+					</dd>
 				</div>
 			{/if}
 			<div class="data-row">
@@ -95,6 +97,12 @@
 				{/each}
 			</div>
 		{/if}
+
+		{#key character.name}
+			{#if data.inventory}
+				<CharacterInventory items={data.inventory} />
+			{/if}
+		{/key}
 
 		{#if data.deaths && data.deaths.length > 0}
 			<h3 class="h4">{$_('deaths')}</h3>
@@ -146,10 +154,6 @@
 					</tbody>
 				</table>
 			</div>
-		{/if}
-
-		{#if data.inventory}
-			<CharacterInventory items={data.inventory} />
 		{/if}
 
 		{#if data.accountCharacters && data.accountCharacters.length > 0}

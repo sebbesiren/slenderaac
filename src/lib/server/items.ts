@@ -6,7 +6,6 @@ export function dbToItem(playerItems: PlayerItems): Item {
 		sid: playerItems.sid,
 		pid: playerItems.pid,
 		type: playerItems.itemtype,
-		count: playerItems.count,
-		id: playerItems.id,
+		count: playerItems.count
 	};
 }
