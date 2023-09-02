@@ -149,23 +149,25 @@
 				</button>
 				<div
 					class="w-full h-full -mb-6 hidden md:flex flex-col items-center justify-end">
-					<img
+					<button
 						on:click={() => {
 							window.location = '/';
-						}}
-						src="/images/logo.png"
-						alt="logo"
-						class="hidden md:block w-36 h-36 object-cover cursor-pointer" />
+						}}>
+						<img
+							src="/images/logo.png"
+							alt="logo"
+							class="hidden md:block w-36 h-36 object-cover" />
+					</button>
 				</div>
 			</svelte:fragment>
 			<div class="flex md:hidden items-center gap-2">
-				<img
+				<button
 					on:click={() => {
 						window.location = '/';
-					}}
-					src="/images/logo.png"
-					alt="logo"
-					class="h-12 -my-4 cursor-pointer" />
+					}}>
+					<img src="/images/logo.png" alt="logo" class="h-12 -my-4" />
+				</button>
+
 				{PUBLIC_TITLE}
 			</div>
 			<svelte:fragment slot="trail">
