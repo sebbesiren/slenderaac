@@ -1,3 +1,3 @@
 #!/bin/bash
 
-node -r dotenv/config build
+NODE_ENV=production node -r dotenv/config build

@@ -168,7 +168,7 @@
 					<img src="/images/logo.png" alt="logo" class="h-12 -my-4" />
 				</button>
 
-				{PUBLIC_TITLE}
+				<!-- {PUBLIC_TITLE} -->
 			</div>
 			<svelte:fragment slot="trail">
 				<div class="hidden md:block w-48">
