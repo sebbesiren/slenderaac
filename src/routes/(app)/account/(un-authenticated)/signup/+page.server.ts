@@ -122,6 +122,7 @@ export const actions = {
 				email,
 				password: hashedPassword,
 				creation: Math.trunc(Date.now() / 1000),
+				premdays: 1,
 
 				type: isAdmin ? AccountType.God : AccountType.Normal,
 
