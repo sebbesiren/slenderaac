@@ -90,7 +90,6 @@ export const actions = {
 									guilds: { connect: { name } },
 								},
 							},
-							date: Math.trunc(Date.now() / 1000),
 						},
 					},
 					guild_ranks: {
