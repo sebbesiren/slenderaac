@@ -103,6 +103,7 @@ export const actions = {
 
 					// I don't know what this is, but it's required
 					creationdata: 0,
+					description: '',
 				},
 			}),
 			prisma.guildInvites.deleteMany({
