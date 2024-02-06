@@ -88,13 +88,13 @@ export async function getTemplate(vocation: PlayerVocation): Promise<Players> {
 	const createData: Partial<Prisma.PlayersCreateInput> =
 		vocation === PlayerVocation.None
 			? {
-					level: 1,
-					health: 150,
-					healthmax: 150,
-					experience: 0,
-					mana: 55,
-					manamax: 55,
-					cap: 400,
+					level: 8,
+					health: 185,
+					healthmax: 185,
+					experience: 4200,
+					mana: 90,
+					manamax: 90,
+					cap: 470,
 					town_id: 3,
 			  }
 			: {

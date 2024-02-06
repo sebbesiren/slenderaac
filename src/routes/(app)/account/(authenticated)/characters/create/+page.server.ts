@@ -83,12 +83,6 @@ export const actions = {
 			await prisma.players.create({
 				data: {
 					account_id: locals.session?.accountId,
-					level: 8,
-					health: 185,
-					healthmax: 185,
-					mana: 90,
-					manamax: 90,
-					experience: 4200,
 					...characterInput,
 				},
 			});
