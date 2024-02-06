@@ -566,11 +566,11 @@ model Players {
   name                                              String               @unique(map: "players_unique") @db.VarChar(255)
   group_id                                          Int                  @default(1)
   account_id                                        Int                  @default(0) @db.UnsignedInt
-  level                                             Int                  @default(1)
+  level                                             Int                  @default(8)
   vocation                                          Int                  @default(0)
-  health                                            Int                  @default(150)
-  healthmax                                         Int                  @default(150)
-  experience                                        BigInt               @default(0)
+  health                                            Int                  @default(185)
+  healthmax                                         Int                  @default(185)
+  experience                                        BigInt               @default(4200)
   lookbody                                          Int                  @default(0)
   lookfeet                                          Int                  @default(0)
   lookhead                                          Int                  @default(0)
@@ -578,8 +578,8 @@ model Players {
   looktype                                          Int                  @default(136)
   lookaddons                                        Int                  @default(0)
   maglevel                                          Int                  @default(0)
-  mana                                              Int                  @default(0)
-  manamax                                           Int                  @default(0)
+  mana                                              Int                  @default(90)
+  manamax                                           Int                  @default(90)
   manaspent                                         BigInt               @default(0) @db.UnsignedBigInt
   soul                                              Int                  @default(0) @db.UnsignedInt
   town_id                                           Int                  @default(1)
