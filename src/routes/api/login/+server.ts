@@ -32,11 +32,10 @@ type Params =
 interface LoginParams {
 	type: 'login';
 	email?: string;
-	password: string;
-	account?: string;
-	accountName?: string;
-	name?: string;
+	password?: string;
 	token?: string;
+	accountName?: string;
+	accountPassword?: string;
 }
 
 interface LoginSession {
@@ -151,16 +150,25 @@ async function handleBoostedCreature() {
 async function handleLogin(
 	params: LoginParams,
 ): Promise<LoginResponse | ErrorResponse> {
+	const email = params.email || params.accountName;
+	const password = params.password || params.accountPassword;
+
+	if (!email || !password) {
+		return {
+			errorCode: 3,
+			errorMessage: 'Email or password is missing.',
+		};
+	}
+
 	const account = await prisma.accounts.findUnique({
 		where: {
-			email:
-				params?.account || params?.email || params?.accountName || params?.name,
+			email: email,
 		},
 		include: {
 			players: { where: { deletion: 0 }, include: { settings: true } },
 		},
 	});
-	if (!account || !comparePassword(params.password, account.password)) {
+	if (!account || !comparePassword(password, account.password)) {
 		return {
 			errorCode: 3,
 			errorMessage: 'Email or password is not correct.',
@@ -200,7 +208,7 @@ async function handleLogin(
 	const hashedSessionId = createHash('sha1').update(sessionKey).digest('hex');
 
 	if (DEPRECATED_USE_SHA1_PASSWORDS === 'true') {
-		sessionKey = `${params.email}\n${params.password}`;
+		sessionKey = `${email}\n${password}`;
 	} else {
 		await prisma.gameAccountSessions.create({
 			data: {
