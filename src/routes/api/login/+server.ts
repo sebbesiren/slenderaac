@@ -31,8 +31,11 @@ type Params =
 
 interface LoginParams {
 	type: 'login';
-	email: string;
+	email?: string;
 	password: string;
+	account?: string;
+	accountName?: string;
+	name?: string;
 	token?: string;
 }
 
@@ -149,7 +152,10 @@ async function handleLogin(
 	params: LoginParams,
 ): Promise<LoginResponse | ErrorResponse> {
 	const account = await prisma.accounts.findUnique({
-		where: { email: params.email },
+		where: {
+			email:
+				params?.account || params?.email || params?.accountName || params?.name,
+		},
 		include: {
 			players: { where: { deletion: 0 }, include: { settings: true } },
 		},
