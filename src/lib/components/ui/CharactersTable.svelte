@@ -38,7 +38,7 @@
 	}
 </script>
 
-<div class="table-container">
+<div class="table-container" style="max-width: 100vw;">
 	<table class="table table-hover table-auto">
 		<thead>
 			<tr class="[&>th]:!p-2">

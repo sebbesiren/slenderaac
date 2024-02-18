@@ -18,11 +18,14 @@ export const GET: RequestHandler = async ({ url }) => {
 	} else if (guild === '1') {
 		where.guild_membership = { isNot: null };
 	}
-
+	console.log('search', search);
 	const results = (
 		await prisma.players.findMany({
 			where: {
-				name: { contains: search, not: { contains: '~~' } },
+				name: {
+					contains: search,
+					not: { contains: '~~' },
+				},
 				deletion: 0,
 				...where,
 			},
@@ -33,6 +36,7 @@ export const GET: RequestHandler = async ({ url }) => {
 		.map((player) => ({
 			...player,
 			experience: player.experience?.toString(),
+			balance: player.balance?.toString(),
 		}));
 
 	return json({ results });

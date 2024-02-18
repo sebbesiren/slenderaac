@@ -67,7 +67,11 @@
 			{/each}
 		</Select>
 	</form>
-	<CharactersTable characters={data.characters} skill={data.skill} ranked />
+	<CharactersTable
+		characters={data.characters}
+		skill={data.skill}
+		ranked
+		style="padding:0.5rem" />
 	<Paginator
 		bind:settings={page}
 		showFirstLastButtons
