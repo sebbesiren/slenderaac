@@ -143,14 +143,16 @@ export async function generateCharacterInput({
 	sex,
 	startingTown,
 	tutorial,
+	vocation,
 }: {
 	name: string;
 	pronoun: PlayerPronoun;
 	sex: PlayerSex;
 	startingTown: number;
 	tutorial: boolean;
+	vocation: number;
 }) {
-	const vocation = PlayerVocation.None;
+	// const vocation = PlayerVocation.None;
 	const template = await getTemplate(vocation);
 	return {
 		level: template.level,

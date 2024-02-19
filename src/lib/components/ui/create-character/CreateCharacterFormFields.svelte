@@ -26,12 +26,31 @@
 
 	export let form: CharacterActionData;
 	export let availableTowns: Town[];
+	const availableVocations = [
+		{
+			id: 1,
+			name: 'Sorcerer',
+		},
+		{
+			id: 2,
+			name: 'Druid',
+		},
+		{
+			id: 3,
+			name: 'Paladin',
+		},
+		{
+			id: 4,
+			name: 'Knight',
+		},
+	];
 
 	invariant(availableTowns.length > 0, 'No towns available');
 
 	let sex = PlayerSex.Female;
 	let characterName = '';
 	let startingTown = availableTowns[0].id;
+	let vocation = availableVocations[0].id;
 
 	$: characterName = toTitleCase(characterName);
 </script>
@@ -85,6 +104,15 @@
 				</label>
 			</span>
 		{/if}
+		<RadioGroup>
+			{#each availableVocations as v}
+				<RadioItem bind:group={vocation} name="vocation" value={v.id}>
+					<div class="flex flex-row gap-1 items-center">
+						{v.name}
+					</div>
+				</RadioItem>
+			{/each}
+		</RadioGroup>
 		{#if availableTowns.length > 1}
 			<RadioGroup>
 				{#each availableTowns as town}

@@ -11,17 +11,17 @@ export async function getAvailableTowns() {
 			? towns
 			: [
 					{
-						id: 1,
-						name: 'Dawnport Tutorial',
+						id: 8,
+						name: 'Thais',
 					},
-					{
-						id: 2,
-						name: 'Dawnport',
-					},
-					{
-						id: 3,
-						name: 'Rookgaard',
-					},
+					// {
+					// 	id: 2,
+					// 	name: 'Dawnport',
+					// },
+					// {
+					// 	id: 3,
+					// 	name: 'Rookgaard',
+					// },
 			  ];
 
 	if (towns[0].name === 'Dawnport Tutorial') {
