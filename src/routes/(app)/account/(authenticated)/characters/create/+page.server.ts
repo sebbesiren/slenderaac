@@ -39,6 +39,7 @@ export const actions = {
 				characterName: [presenceValidator, characterNameValidator],
 				characterSex: [presenceValidator, stringValidator],
 				startingTown: [presenceValidator, numberValidator],
+				vocation: [presenceValidator, numberValidator],
 			},
 			data,
 		);
