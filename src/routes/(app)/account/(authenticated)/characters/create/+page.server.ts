@@ -31,6 +31,7 @@ export const actions = {
 		const characterSex = data.get('characterSex');
 		const characterPronouns = data.get('characterPronouns');
 		const startingTown = data.get('startingTown');
+		const vocation = data.get('vocation');
 		const tutorial = data.get('tutorial');
 
 		const errors = await validate(
@@ -47,7 +48,7 @@ export const actions = {
 		}
 
 		invariant(
-			characterName && characterSex && startingTown,
+			characterName && characterSex && startingTown && vocation,
 			'Missing required fields',
 		);
 		invariant(typeof characterName === 'string', 'Name must be a string');
@@ -56,10 +57,15 @@ export const actions = {
 			typeof startingTown === 'string',
 			'Starting town must be a string',
 		);
+		invariant(
+			typeof vocation === 'string',
+			'Starting vocation must be a string',
+		);
 
 		const characterSexValue = parsePlayerSex(characterSex);
 		const characterPronounsValue = parsePlayerPronoun(characterPronouns);
 		const startingTownValue = Number(startingTown) ?? 1;
+		const vocationValue = Number(vocation) ?? 1;
 
 		const existingPlayer = await prisma.players.findFirst({
 			where: { name: characterName },
@@ -78,6 +84,7 @@ export const actions = {
 			sex: characterSexValue,
 			startingTown: startingTownValue,
 			tutorial: tutorial === 'on',
+			vocation: vocationValue,
 		});
 		try {
 			await prisma.players.create({
